@@ -10,6 +10,7 @@ public class PlayerLook : MonoBehaviour
     public float ySensitivity = 30f;
 
     public void ProcessLook(Vector2 input){
+
         float mouseX = input.x;
         float mouseY = input.y;
 

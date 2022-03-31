@@ -8,12 +8,18 @@ public class InputManager : MonoBehaviour
     private PlayerInput.OnFootActions onFoot;
     private PlayerMotor motor;
     private PlayerLook look;
+    private PlayerShoot shoot;
     void Awake(){
         playerInput = new PlayerInput();
         onFoot = playerInput.OnFoot;
         motor = GetComponent<PlayerMotor>();
         look = GetComponent<PlayerLook>();
+        shoot = GetComponent<PlayerShoot>();
         onFoot.Jump.performed += ctx => motor.Jump();
+
+        onFoot.Fire.performed += ctx => shoot.click_pressed = true;
+
+        Cursor.lockState = CursorLockMode.Locked;
     }
     void FixedUpdate(){
         motor.ProcessMove(onFoot.Movement.ReadValue<Vector2>());
