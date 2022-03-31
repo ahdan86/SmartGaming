@@ -22,6 +22,8 @@ public class PlayerShoot : MonoBehaviour
     public bool allowInvoke = true;
     public bool click_pressed = false;
 
+    public float arcRange = 1f;
+
     private void Awake()
     {
         bulletsLeft = magazineSize;
@@ -39,7 +41,7 @@ public class PlayerShoot : MonoBehaviour
         else
         {
             shooting = click_pressed;
-            Debug.Log(shooting);
+            //Debug.Log(shooting);
             click_pressed = false;
         }
 
@@ -81,6 +83,8 @@ public class PlayerShoot : MonoBehaviour
 
         currentBullet.GetComponent<Rigidbody>().AddForce(directionWithoutSpread.normalized * shootForce, ForceMode.Impulse);
         currentBullet.GetComponent<Rigidbody>().AddForce(fpsCam.transform.up * upwardForce, ForceMode.Impulse);
+
+        iTween.PunchPosition(currentBullet, new Vector3(Random.Range(-arcRange, arcRange),Random.Range(-arcRange, arcRange),0), Random.Range(0.5f, 2));
 
 
         bulletsLeft--;
