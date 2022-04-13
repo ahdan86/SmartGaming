@@ -6,6 +6,7 @@ public class Enemy : MonoBehaviour
 {
     [SerializeField] private float maxHealth = 100;
     [SerializeField] private Healthbar healthbar;
+    [SerializeField] private Transform targetTransform;
     private float currentHealth;
 
     private void Start()
