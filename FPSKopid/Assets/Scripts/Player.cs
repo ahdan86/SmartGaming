@@ -24,20 +24,4 @@ public class Player : MonoBehaviour
     {
         Debug.Log(currentHealth);
     }
-
-    /*
-    public void GetShot(int damage, EnemyAgent shooter)
-    {
-        currentHealth -= damage;
-        if(currentHealth <= 0)
-        {
-            Die(shooter);
-        }
-    }
-    */
-
-    private void Die(EnemyAgent shooter)
-    {
-        
-    }
 }

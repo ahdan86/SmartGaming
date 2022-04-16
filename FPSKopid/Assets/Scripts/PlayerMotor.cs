@@ -23,17 +23,28 @@ public class PlayerMotor : MonoBehaviour
         isGrounded = controller.isGrounded;
     }
 
-    public void ProcessMove(Vector2 input)
+    private void FixedUpdate()
+    {
+        ProcessMove();
+        if (Input.GetKey(KeyCode.Space))
+            Jump();
+    }
+
+    public void ProcessMove()
     {
         Vector3 moveDirection = Vector3.zero;
-        moveDirection.x = input.x;
-        moveDirection.z = input.y;
+        moveDirection.x = Input.GetAxisRaw("Horizontal");
+        moveDirection.z = Input.GetAxisRaw("Vertical");
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            Jump();
+        }
         controller.Move(transform.TransformDirection(moveDirection) * speed * Time.deltaTime);
         playerVelocity.y += gravity  * Time.deltaTime;
         if(isGrounded && playerVelocity.y < 0)
             playerVelocity.y = -2f;
         controller.Move(playerVelocity* Time.deltaTime);
-        //Debug.Log(playerVelocity.y);
+        Debug.Log("Movement:" + moveDirection.x +" "+ moveDirection.z);
     }
 
     public void Jump(){
